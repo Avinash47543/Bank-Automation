@@ -94,7 +94,7 @@ def process_csv(input_file, output_file, not_matched_file, sus_file):
             if "UNIQUE ID" in project_name:
                 project_name = project_name.split("UNIQUE ID")[0].strip()
 
-            print(f"\n🔍 Processing: {project_name} ({city}) - {bank_name}")
+            print(f"\n  Processing: {project_name} ({city}) - {bank_name}")
 
             score, core_matched_name, full_matched_name = fetch_fuzzy_score(project_name, city)
             score_numeric = float(score) if score.replace('.', '', 1).isdigit() else 0
@@ -104,7 +104,7 @@ def process_csv(input_file, output_file, not_matched_file, sus_file):
 
             row_data = [city, project_name, bank_name, score_numeric, full_matched_name, match_percentage]
 
-            # Write data immediately to respective files
+           
             if score_numeric > 70:
                 writer.writerow(row_data)
                 outfile.flush()
